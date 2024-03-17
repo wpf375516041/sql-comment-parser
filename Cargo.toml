@@ -3,6 +3,8 @@ name = "sql-comment-parser"
 version = "0.1.0"
 edition = "2021"
 readme="./Readme.md"
+license-file = "./LICENSE"
+description = "sql comment parser"
 keywords = ["sql","comment"]
 homepage = "https://github.com/wpf375516041/sql-comment-parser"
 
