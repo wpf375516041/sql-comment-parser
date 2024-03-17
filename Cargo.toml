@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 readme="./Readme.md"
 keywords = ["sql","comment"]
+homepage = "https://github.com/wpf375516041/sql-comment-parser"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
