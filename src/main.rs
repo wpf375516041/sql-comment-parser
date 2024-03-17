@@ -29,6 +29,22 @@ impl<'a> SqlCommentParser<'a> {
         }
     }
 
+    fn get_comment_sql(&mut self) -> String {
+        let mut comment_sql = String::new();
+        loop {
+            match self.next_comment() {
+                Some(comment_range) => {
+                    comment_sql
+                        .push_str(&self.sql[comment_range.start_index..comment_range.end_index]);
+                }
+                None => {
+                    break;
+                }
+            };
+        }
+        comment_sql
+    }
+
     fn remove_comment_sql(&mut self) -> String {
         let mut new_sql = String::new();
         let mut start_index = 0;
@@ -179,8 +195,10 @@ impl<'a> SqlCommentParser<'a> {
 fn main() {
     let sql = "SELECT * FROM table--; -- This is a single line comment";
     let mut parser = SqlCommentParser::new(&sql);
+    let comment_sql = parser.get_comment_sql();
     let cleaned_sql = parser.remove_comment_sql();
     println!("{}", cleaned_sql);
+    println!("{}", comment_sql);
 
     let sql_with_two_comments = "SELECT * FROM table--; -- Comment 1\n-- Comment 2";
     let mut parser2 = SqlCommentParser::new(&sql_with_two_comments);
